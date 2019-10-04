@@ -53,7 +53,21 @@ router.post('/', async (req, res) => {
 });
 
 // update(id, changesObj)
-// router.put();
+router.put('/:id', async (req, res) => {
+  try{
+    const project = await Projects.update(req.params.id, req.body);
+    if (project) {
+      res.status(200).json(project);
+    } else {
+      res.status(404).json(null);
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      error: "Error creating Project"
+    })
+  }
+});
 
 // remove(id)
 // router.delete();
