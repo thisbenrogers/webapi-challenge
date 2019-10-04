@@ -5,6 +5,7 @@ const Actions = require('../helpers/actionModel');
 
 const router = express.Router();
 
+// get()
 router.get('/', async (req, res) => {
   try {
     const projects = await Projects.get();
@@ -16,5 +17,34 @@ router.get('/', async (req, res) => {
     });
   }
 });
+
+// get(id)
+router.get('/:id', async (req, res) => {
+  try {
+    const id = req.params.id
+    const project = await Projects.get(id);
+    if (id) {
+      res.status(200).json(project);
+    } else {
+      res.status(404).json({
+        message: 'Project not Found.'
+      })
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      error: "Error retrieving the Project."
+    })
+  }
+})
+
+// insert()
+// router.post();
+
+// update(id, changesObj)
+// router.put();
+
+// remove(id)
+// router.delete();
 
 module.exports = router;
