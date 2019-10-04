@@ -1,7 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 
-// const projectRouter = require('./data/routers/project-router');
+const projectRouter = require('./data/routers/project-router.js');
 
 const server = express();
 
@@ -13,6 +13,8 @@ const logger = (req, res, next) => {
 server.use(logger);
 server.use(express.json());
 server.use(helmet());
+
+server.use('/api/projects', projectRouter);
 
 const port = process.env.PORT || 4444;
 server.listen(port, () => {
