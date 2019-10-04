@@ -64,12 +64,26 @@ router.put('/:id', async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      error: "Error creating Project"
+      error: "Error updating Project"
     })
   }
 });
 
 // remove(id)
-// router.delete();
+router.delete('/:id', async (req, res) => {
+  try{
+    const count = await Projects.remove(req.params.id);
+    if (count > 0) {
+      res.status(200).json({ message: 'The project has been nuked' });
+    } else {
+      res.status(404).json({ message: 'The project could not be found' });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      error: "Error deleting Project"
+    })
+  }
+});
 
 module.exports = router;
