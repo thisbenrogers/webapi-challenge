@@ -38,8 +38,19 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-// insert()
-// router.post();
+// insert(req.body)
+router.post('/', async (req, res) => {
+  try{
+    const obj = req.body;
+    const project = await Projects.insert(obj);
+    res.status(201).json(project);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      error: "Error creating Project"
+    })
+  }
+});
 
 // update(id, changesObj)
 // router.put();
