@@ -11,4 +11,13 @@ there is no data on that route, just write some code, you'll sort it out… don'
 I need this code, just don't know where, perhaps should make some middleware, don't worry, be happy
 
 Go code!
+
+<3
+
 */
+
+const server = require('./server');
+
+server.listen(4000, () => {
+  console.log('\n* Server Running on http://localhost:4000 *\n');
+});
